@@ -2,11 +2,11 @@ import FavoriteButton from "@/components/FavoriteButton";
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
-interface Props {
+type Props = {
   params: {
     episodeId: string;
   };
-}
+};
 
 export default async function DetaljiEpizode({ params }: Props) {
   const { episodeId } = params;
@@ -29,14 +29,23 @@ export default async function DetaljiEpizode({ params }: Props) {
   }
 
   return (
-    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
-      <div className="absolute top-4 right-4 flex gap-2 items-center">
+    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center">
+      {/* Gornji desni kut - back i home */}
+      <div className="absolute top-4 right-4 flex gap-2">
         <BackButton />
+        <Link
+          href="/"
+          className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm"
+        >
+          Početna
+        </Link>
       </div>
 
+      {/* Naziv serije */}
       {serija && (
         <h2 className="text-xl text-gray-300 mb-1 text-center">
-          Serija: <span className="font-semibold text-white">{serija.name}</span>
+          Serija:{" "}
+          <span className="font-semibold text-white">{serija.name}</span>
         </h2>
       )}
 
