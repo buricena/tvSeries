@@ -8,7 +8,9 @@ type FavoriteItem = {
   id: number;
   name: string;
   type: 'serija' | 'glumac' | 'epizoda';
+  serija?: string;
 };
+
 
 export default function FavoriteButton({ item }: { item: FavoriteItem }) {
   const [saved, setSaved] = useState(false);

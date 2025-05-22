@@ -1,4 +1,5 @@
 import "./globals.css";
+import NavBar from "@/components/NavBar";
 
 export const metadata = {
   title: {
@@ -32,13 +33,15 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="hr">
-      <body className="bg-gray-100 text-gray-900">
-        {children}
-                <footer className="bg-black text-white text-center py-4 mt-8">
+      <body className="bg-black text-white">
+<NavBar />
+<div className="pt-16">{children}</div>
+
+
+        <footer className="bg-black text-white text-center py-4 mt-8">
           <p className="text-sm">
             © {new Date().getFullYear()} Završni projekt | Podaci sa TV Maze API
           </p>

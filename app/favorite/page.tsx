@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import BackButton from '@/components/BackButton';
 
 type FavoriteItem = {
   id: number;
@@ -28,12 +27,9 @@ export default function FavoritePage() {
   const prikazaniFavoriti = favorites.filter((f) => f.type === activeTab);
 
   return (
-    <main className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-center text-red-600">Moji favoriti</h1>
+    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
 
-      <div className="absolute top-4 right-4">
-        <BackButton />
-      </div>
+      <h1 className="text-3xl font-bold mb-6 text-center text-red-600">Moji favoriti</h1>
 
       {/* Tabs */}
       <div className="flex justify-center mb-6 space-x-4">
@@ -52,27 +48,28 @@ export default function FavoritePage() {
 
       {/* Lista favorita */}
       {prikazaniFavoriti.length > 0 ? (
-        <ul className="space-y-4">
+        <ul className="space-y-4 w-full max-w-3xl">
           {prikazaniFavoriti.map((f) => (
             <li
               key={`${f.type}-${f.id}`}
-              className="flex justify-between items-center bg-white p-4 rounded shadow"
+              className="flex justify-between items-center bg-white text-black p-6 rounded shadow-md"
             >
               <Link
                 href={
                   f.type === 'serija'
                     ? `/serija/${encodeURIComponent(f.name)}`
                     : f.type === 'glumac'
-                    ? `/glumci/${encodeURIComponent(f.name)}`
-                    : `/epizode/${encodeURIComponent(f.name)}`
+                    ? `/serija/${encodeURIComponent(f.name)}/glumci/${f.id}`
+                    : `/serija/${encodeURIComponent(f.name)}/epizode/${f.id}`
                 }
-                className="font-medium text-blue-600 hover:underline"
+                className="font-semibold text-blue-600 hover:underline text-lg"
               >
                 {f.name}
               </Link>
+
               <button
                 onClick={() => obrisi(f.id, f.type)}
-                className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+                className="px-4 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600"
               >
                 Obriši
               </button>
@@ -80,7 +77,7 @@ export default function FavoritePage() {
           ))}
         </ul>
       ) : (
-        <p className="text-center text-gray-500 mt-8">
+        <p className="text-center text-gray-400 mt-8">
           Nema spremljenih favorita za ovu kategoriju.
         </p>
       )}

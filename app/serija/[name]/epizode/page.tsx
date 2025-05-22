@@ -26,7 +26,7 @@ export default async function Epizode({
   const episodes = await resEpisodes.json();
 
   return (
-    <main className="p-6 max-w-4xl mx-auto text-white bg-black min-h-screen">
+<main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
     <div className="absolute top-4 right-4">
 
       <BackButton />

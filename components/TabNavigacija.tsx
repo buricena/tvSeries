@@ -11,7 +11,7 @@ export default function TabNavigacija({ name }: { name: string }) {
   ];
 
   return (
-    <div className="flex justify-center border-b border-gray-700 mb-6">
+<div className="flex justify-center border-b border-gray-700 mb-4 mt-2">
       {tabovi.map((tab) => {
         const isActive = pathname === tab.href;
 

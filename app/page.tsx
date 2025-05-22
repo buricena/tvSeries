@@ -60,8 +60,8 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <Link href="/pretraga" className="hover:underline text-blue-400">Istraži</Link>
-        <Link href="/favorite" className="hover:underline text-red-400">Favoriti</Link>
+        {/* <Link href="/pretraga" className="hover:underline text-blue-400">Istraži</Link>
+        <Link href="/favorite" className="hover:underline text-red-400">Favoriti</Link> */}
       </motion.div>
 
       {/* Naslov slidera */}
@@ -95,25 +95,33 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i }}
             >
-              <Link
-                href={`/serija/${encodeURIComponent(show.name)}`}
-                className="w-56 bg-gray-800 rounded shadow-md p-4 hover:scale-105 transition"
-              >
-                {show.image && (
-                  <img
-                    src={show.image.medium}
-                    alt={show.name}
-                    className="w-full h-72 object-cover rounded"
-                  />
-                )}
-                <h2 className="text-center text-base font-bold mt-3">{show.name}</h2>
-                <p className="text-center text-sm text-yellow-400">
-                  ⭐ {show.rating?.average ?? "N/A"}
-                </p>
-                <p className="text-center text-xs text-gray-400 mt-1">
-                  {show.genres?.slice(0, 2).join(", ") || "Bez žanra"}
-                </p>
-              </Link>
+<Link
+  key={show.id}
+  href={`/serija/${encodeURIComponent(show.name)}`}
+>
+  <motion.div
+    className="flex-shrink-0 w-56 bg-gray-800 rounded shadow-md p-4 hover:scale-105 transition"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.1 * i }}
+  >
+    {show.image && (
+      <img
+        src={show.image.medium}
+        alt={show.name}
+        className="w-full h-72 object-cover rounded"
+      />
+    )}
+    <h2 className="text-center text-base font-bold mt-3">{show.name}</h2>
+    <p className="text-center text-sm text-yellow-400">
+      ⭐ {show.rating?.average ?? "N/A"}
+    </p>
+    <p className="text-center text-xs text-gray-400 mt-1">
+      {show.genres?.slice(0, 2).join(", ") || "Bez žanra"}
+    </p>
+  </motion.div>
+</Link>
+
             </motion.div>
           ))}
         </div>

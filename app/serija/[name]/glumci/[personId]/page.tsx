@@ -16,7 +16,7 @@ export default async function DetaljiGlumca({
   const glumac = await res.json();
 
   return (
-    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center">
+<main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
     <div className="absolute top-4 right-4">
 
       <BackButton />

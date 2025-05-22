@@ -7,6 +7,7 @@ import BackButton from "@/components/BackButton";
 type Show = {
   id: number;
   name: string;
+  genres: string[];
   image?: {
     medium: string;
   };
@@ -15,6 +16,7 @@ type Show = {
 export default function SerijaLista() {
   const [serije, setSerije] = useState<Show[]>([]);
   const [pretraga, setPretraga] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -30,28 +32,38 @@ export default function SerijaLista() {
     setLoading(false);
   };
 
+  const handleReset = () => {
+    setPretraga("");
+    setSelectedGenre("");
+  };
+
   const filtrirane = serije.filter((s) =>
     s.name.toLowerCase().includes(pretraga.toLowerCase())
   );
 
-  // Uklanjanje duplikata po ID-u
-  const uniqueShows = Array.from(new Map(filtrirane.map(s => [s.id, s])).values());
+  const genreFiltered = selectedGenre
+    ? filtrirane.filter((s) => s.genres.includes(selectedGenre))
+    : filtrirane;
 
-  const handleReset = () => {
-    setPretraga("");
-  };
+  const uniqueShows = Array.from(
+    new Map(genreFiltered.map((s) => [s.id, s])).values()
+  );
+
+  const sviZanrovi = Array.from(
+    new Set(serije.flatMap((s) => s.genres))
+  ).sort();
 
   return (
-    <main className="p-6 min-h-screen bg-black text-white">
-<h1 className="text-3xl font-bold text-red-500 mb-6 text-center">
-  Pretraga serija
-</h1>
-    <div className="absolute top-4 right-4">
-
-      <BackButton />
+    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
+      <h1 className="text-3xl font-bold text-red-500 mb-6 text-center">
+        Pretraga serija
+      </h1>
+      <div className="absolute top-4 right-4">
+        <BackButton />
       </div>
 
-<div className="mb-6 flex justify-center gap-3">
+      {/*za pretragu i fitlriranje */}
+      <div className="mb-6 flex flex-wrap justify-center gap-3">
         <input
           type="text"
           placeholder="Traži seriju..."
@@ -59,6 +71,20 @@ export default function SerijaLista() {
           value={pretraga}
           onChange={(e) => setPretraga(e.target.value)}
         />
+
+        <select
+          className="border border-gray-600 bg-gray-800 text-white rounded px-3 py-2"
+          value={selectedGenre}
+          onChange={(e) => setSelectedGenre(e.target.value)}
+        >
+          <option value="">Svi žanrovi</option>
+          {sviZanrovi.map((genre) => (
+            <option key={genre} value={genre}>
+              {genre}
+            </option>
+          ))}
+        </select>
+
         <button
           onClick={handleReset}
           className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
@@ -67,6 +93,7 @@ export default function SerijaLista() {
         </button>
       </div>
 
+      {/* Prikaz kartica */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mb-8">
         {uniqueShows.map((s) => (
           <Link

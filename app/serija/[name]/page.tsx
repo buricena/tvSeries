@@ -34,15 +34,14 @@ export default async function SerijaDetalji({
         <BackButton />
       </div>
 
-      {/* Tab navigacija */}
-      <TabNavigacija name={serija.name} />
+<TabNavigacija name={serija.name} />
 
-      {/* Ime serije */}
-      <h1 className="text-4xl text-center font-bold text-red-600 mt-6 mb-4">
-        {serija.name}
-      </h1>
+<h1 className="mt-6 text-3xl font-bold text-center text-red-600">
+  {serija.name}
+</h1>
 
-      {/* Sadržaj centriran */}
+
+{/* da se sadržaj centrira */}
       <div className="text-center px-4">
         {serija.image?.medium && (
           <div className="mt-4 flex justify-center">

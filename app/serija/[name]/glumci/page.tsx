@@ -26,7 +26,7 @@ export default async function Glumci({
   const cast = await resCast.json();
 
   return (
-<main className="p-6 max-w-6xl mx-auto bg-black text-white min-h-screen">
+<main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
     <div className="absolute top-4 right-4">
 
       <BackButton />
