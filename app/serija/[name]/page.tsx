@@ -3,12 +3,15 @@ import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
 import TabNavigacija from "@/components/TabNavigacija";
 
-export default async function SerijaDetalji({
-  params,
-}: {
-  params: Promise<{ name: string }>;
-}) {
-  const { name } = await params;
+type PageProps = {
+  params: {
+    name: string;
+  };
+};
+
+export default async function SerijaDetalji({ params }: PageProps) {
+  const { name } = params;
+
 
   const res = await fetch(`http://api.tvmaze.com/search/shows?q=${name}`);
   if (!res.ok) {
