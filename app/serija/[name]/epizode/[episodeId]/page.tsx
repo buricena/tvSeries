@@ -2,11 +2,13 @@ import FavoriteButton from "@/components/FavoriteButton";
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
-export default async function DetaljiEpizode({
-  params,
-}: {
-  params: { episodeId: string };
-}) {
+type PageProps = {
+  params: {
+    episodeId: string;
+  };
+};
+
+export default async function DetaljiEpizode({ params }: PageProps) {
   const { episodeId } = params;
 
   const res = await fetch(`https://api.tvmaze.com/episodes/${episodeId}`);
@@ -27,18 +29,14 @@ export default async function DetaljiEpizode({
   }
 
   return (
-<main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
-      {/* Gornji desni kut - back i home */}
+    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
       <div className="absolute top-4 right-4 flex gap-2 items-center">
-  <BackButton />
-
-</div>
-
+        <BackButton />
+      </div>
 
       {serija && (
         <h2 className="text-xl text-gray-300 mb-1 text-center">
-          Serija:{" "}
-          <span className="font-semibold text-white">{serija.name}</span>
+          Serija: <span className="font-semibold text-white">{serija.name}</span>
         </h2>
       )}
 
