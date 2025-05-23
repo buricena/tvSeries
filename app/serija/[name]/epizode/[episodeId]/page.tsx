@@ -25,15 +25,10 @@ export default async function DetaljiEpizode({ params }) {
   }
 
   return (
-    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center">
+    <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
       <div className="absolute top-4 right-4 flex gap-2">
         <BackButton />
-        <Link
-          href="/"
-          className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
-        >
-          Početna
-        </Link>
+
       </div>
 
       {serija && (
