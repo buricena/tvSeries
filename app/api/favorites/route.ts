@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+// . GET, POST i DELETE napisane uz pomoc kodova sa tečaja i službene dokumentaicje Next.js : https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+
+
 let favorites: any[] = [];
 
 export async function GET() {
@@ -10,7 +13,7 @@ export async function POST(req: Request) {
   const data = await req.json();
 
   if (!data || !data.id || !data.name || !data.type) {
-    return NextResponse.json({ error: "Neispravan format" }, { status: 400 });
+    return new NextResponse(null, { status: 400 });
   }
 
   const postoji = favorites.some(
@@ -18,11 +21,11 @@ export async function POST(req: Request) {
   );
 
   if (postoji) {
-    return NextResponse.json({ message: "Već u favoritima" }, { status: 409 });
+    return new NextResponse(null, { status: 409 });
   }
 
   favorites.push(data);
-  return NextResponse.json({ message: "Dodano!" }, { status: 201 });
+  return new NextResponse(null, { status: 201 });
 }
 
 export async function DELETE(req: Request) {
@@ -31,5 +34,5 @@ export async function DELETE(req: Request) {
   const type = searchParams.get("type");
 
   favorites = favorites.filter((f) => !(f.id === id && f.type === type));
-  return NextResponse.json({ message: "Uklonjeno" });
+  return new NextResponse(null, { status: 204 });
 }

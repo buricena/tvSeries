@@ -13,6 +13,8 @@ export default function FavoritePage() {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
   const [activeTab, setActiveTab] = useState<'serija' | 'glumac' | 'epizoda'>('serija');
 
+  // activeTab oznacava trenutno aktivnu, tj otvorenu stavku
+
   useEffect(() => {
     fetch('/api/favorites')
       .then((res) => res.json())
@@ -24,14 +26,18 @@ export default function FavoritePage() {
     setFavorites((prev) => prev.filter((f) => !(f.id === id && f.type === type)));
   };
 
+
+    // filtrira da se prikazuju samo favoriti iz aktivne stavke
+
   const prikazaniFavoriti = favorites.filter((f) => f.type === activeTab);
+
 
   return (
     <main className="bg-black text-white min-h-screen p-6 flex flex-col items-center relative">
 
       <h1 className="text-3xl font-bold mb-6 text-center text-red-600">Moji favoriti</h1>
 
-      {/* Tabs */}
+
       <div className="flex justify-center mb-6 space-x-4">
         {(['serija', 'glumac', 'epizoda'] as const).map((tip) => (
           <button
@@ -46,7 +52,7 @@ export default function FavoritePage() {
         ))}
       </div>
 
-      {/* Lista favorita */}
+
       {prikazaniFavoriti.length > 0 ? (
         <ul className="space-y-4 w-full max-w-3xl">
           {prikazaniFavoriti.map((f) => (

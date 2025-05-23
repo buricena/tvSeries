@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
-import { Heart, HeartOff } from "lucide-react"; // Lucide icons
+import { Heart, HeartOff } from "lucide-react"; 
 
 
 type FavoriteItem = {
@@ -11,6 +11,7 @@ type FavoriteItem = {
   serija?: string;
 };
 
+// Za izgled FavoriteButtona instalirala sam Lucide ikone sa npm install lucide-react, to  mi je omogućilo da koristim <Heart /> i <HeartOff />
 
 export default function FavoriteButton({ item }: { item: FavoriteItem }) {
   const [saved, setSaved] = useState(false);
@@ -64,6 +65,7 @@ export default function FavoriteButton({ item }: { item: FavoriteItem }) {
       } catch (err) {
         console.error(err);
         alert("Greška u mreži.");
+        
       }
     }
   });

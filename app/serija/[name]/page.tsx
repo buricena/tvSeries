@@ -3,6 +3,9 @@ import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
 import TabNavigacija from "@/components/TabNavigacija";
 
+
+
+
 // @ts-expect-error: Next.js handles `params` type internally in App Router
 export default async function SerijaDetalji({ params }) {
   const { name } = params;
@@ -57,6 +60,9 @@ export default async function SerijaDetalji({ params }) {
         <p>
           <strong>Premijera:</strong> {serija.premiered}
         </p>
+
+
+{/* koristila sam .replace(/<[^>]*>/g, '') da bi se očistili ti znakovi pri prikazu : https://stackoverflow.com/questions/1206911/why-do-i-need-to-add-g-when-using-string-replace-in-javascript */}
 
         <div className="mt-4">
           <h2 className="text-lg font-semibold mb-2">Opis</h2>
