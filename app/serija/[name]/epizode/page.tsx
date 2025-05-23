@@ -1,13 +1,11 @@
 import Link from "next/link";
 import BackButton from "@/components/BackButton";
 
-interface PageProps {
-  params: {
-    name: string;
-  };
-}
-
-export default async function Epizode({ params }: PageProps) {
+export default async function Epizode({
+  params,
+}: {
+  params: { name: string };
+}) {
   const { name } = params;
 
   const resShow = await fetch(`https://api.tvmaze.com/search/shows?q=${name}`);

@@ -3,15 +3,12 @@ import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
 import TabNavigacija from "@/components/TabNavigacija";
 
-type PageProps = {
-  params: {
-    name: string;
-  };
-};
-
-export default async function SerijaDetalji({ params }: PageProps) {
+export default async function SerijaDetalji({
+  params,
+}: {
+  params: { name: string };
+}) {
   const { name } = params;
-
 
   const res = await fetch(`http://api.tvmaze.com/search/shows?q=${name}`);
   if (!res.ok) {
@@ -37,14 +34,13 @@ export default async function SerijaDetalji({ params }: PageProps) {
         <BackButton />
       </div>
 
-<TabNavigacija name={serija.name} />
+      <TabNavigacija name={serija.name} />
 
-<h1 className="mt-6 text-3xl font-bold text-center text-red-600">
-  {serija.name}
-</h1>
+      <h1 className="mt-6 text-3xl font-bold text-center text-red-600">
+        {serija.name}
+      </h1>
 
-
-{/* da se sadržaj centrira */}
+      {/* da se sadržaj centrira */}
       <div className="text-center px-4">
         {serija.image?.medium && (
           <div className="mt-4 flex justify-center">

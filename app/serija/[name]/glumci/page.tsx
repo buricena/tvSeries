@@ -1,13 +1,11 @@
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
-interface PageProps {
-  params: {
-    name: string;
-  };
-}
-
-export default async function Glumci({ params }: PageProps) {
+export default async function Glumci({
+  params,
+}: {
+  params: { name: string };
+}) {
   const { name } = params;
 
   const resShow = await fetch(`https://api.tvmaze.com/search/shows?q=${name}`);

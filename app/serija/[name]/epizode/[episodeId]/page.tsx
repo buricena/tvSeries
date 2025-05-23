@@ -2,13 +2,11 @@ import FavoriteButton from "@/components/FavoriteButton";
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
-interface PageProps {
-  params: {
-    episodeId: string;
-  };
-}
-
-export default async function DetaljiEpizode({ params }: PageProps) {
+export default async function DetaljiEpizode({
+  params,
+}: {
+  params: { episodeId: string };
+}) {
   const { episodeId } = params;
 
   const res = await fetch(`https://api.tvmaze.com/episodes/${episodeId}`);
