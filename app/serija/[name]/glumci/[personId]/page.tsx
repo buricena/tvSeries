@@ -1,11 +1,7 @@
 import FavoriteButton from "@/components/FavoriteButton";
 import BackButton from "@/components/BackButton";
 
-export default async function DetaljiGlumca({
-  params,
-}: {
-  params: { personId: string };
-}) {
+export default async function DetaljiGlumca({ params }) {
   const { personId } = params;
 
   const res = await fetch(`https://api.tvmaze.com/people/${personId}`);

@@ -3,11 +3,7 @@ import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
 import TabNavigacija from "@/components/TabNavigacija";
 
-export default async function SerijaDetalji({
-  params,
-}: {
-  params: { name: string };
-}) {
+export default async function SerijaDetalji({ params }) {
   const { name } = params;
 
   const res = await fetch(`http://api.tvmaze.com/search/shows?q=${name}`);

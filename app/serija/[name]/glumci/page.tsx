@@ -1,11 +1,7 @@
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
-export default async function Glumci({
-  params,
-}: {
-  params: { name: string };
-}) {
+export default async function Glumci({ params }) {
   const { name } = params;
 
   const resShow = await fetch(`https://api.tvmaze.com/search/shows?q=${name}`);
