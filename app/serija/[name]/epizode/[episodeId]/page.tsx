@@ -2,11 +2,7 @@ import FavoriteButton from "@/components/FavoriteButton";
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
-export default async function DetaljiEpizode({
-  params,
-}: {
-  params: { episodeId: string };
-}) {
+export default async function DetaljiEpizode({ params }) {
   const { episodeId } = params;
 
   const res = await fetch(`https://api.tvmaze.com/episodes/${episodeId}`);
