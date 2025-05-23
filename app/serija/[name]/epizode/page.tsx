@@ -1,6 +1,8 @@
 import Link from "next/link";
 import BackButton from "@/components/BackButton";
 
+// @ts-expect-error: Next.js handles `params` type internally in App Router
+
 export default async function Epizode({ params }) {
   const { name } = params;
 

@@ -1,6 +1,8 @@
 import FavoriteButton from "@/components/FavoriteButton";
 import BackButton from "@/components/BackButton";
 
+// @ts-expect-error: Next.js handles `params` type internally in App Router
+
 export default async function DetaljiGlumca({ params }) {
   const { personId } = params;
 

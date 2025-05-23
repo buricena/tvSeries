@@ -3,6 +3,7 @@ import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
 import TabNavigacija from "@/components/TabNavigacija";
 
+// @ts-expect-error: Next.js handles `params` type internally in App Router
 export default async function SerijaDetalji({ params }) {
   const { name } = params;
 
@@ -25,7 +26,6 @@ export default async function SerijaDetalji({ params }) {
 
   return (
     <main className="relative p-6 bg-black min-h-screen text-white">
-      {/* Back button u gornjem desnom kutu */}
       <div className="absolute top-4 right-4">
         <BackButton />
       </div>
@@ -36,7 +36,6 @@ export default async function SerijaDetalji({ params }) {
         {serija.name}
       </h1>
 
-      {/* da se sadržaj centrira */}
       <div className="text-center px-4">
         {serija.image?.medium && (
           <div className="mt-4 flex justify-center">

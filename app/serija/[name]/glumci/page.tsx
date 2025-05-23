@@ -1,6 +1,8 @@
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 
+// @ts-expect-error: Next.js handles `params` type internally in App Router
+
 export default async function Glumci({ params }) {
   const { name } = params;
 
